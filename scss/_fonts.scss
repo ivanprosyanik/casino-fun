@@ -1,0 +1,28 @@
+// Пример подключение шрифтов:
+
+@font-face {
+  font-family: 'Silkscreen';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Silkscreen-Regular'),
+    url('../fonts/Silkscreen-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Montserrat-Regular'),
+    url('../fonts/Montserrat-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Montserrat-Medium'),
+    url('../fonts/Montserrat-Medium.woff2') format('woff2');
+  font-display: swap;
+}

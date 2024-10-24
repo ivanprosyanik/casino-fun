@@ -1,0 +1,70 @@
+// Міксін для гнучкого шрифта. Визивається: " @include fz()"
+// У дужки вносимо спочатку максимальне значення розміру, потім мінімальне.
+
+@mixin fz($max, $min, $wmax: 1920, $wmin: 375) {
+  font-size: calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - #{$wmin}px) / (#{$wmax} - #{$wmin})));
+}
+
+// Міксін для обризання тексту. Визивається: "@include line-clamp()". У дужки вносимо кількість максимально вмістимих рядків.
+
+@mixin line-clamp($lines: 1) {
+  @if $lines <=1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+// Функція для гнучких розмірів будь-чого. Margin, padding і тд. Визиваєтсья написанням "size()", де потрібний розрахунок розміру
+// У дужки вносимо спочатку максимальне значення розміру (Наприклад: "margin", "padding"), потім мінімальне. 
+
+@function size($max, $min, $wmax: 1920, $wmin: 375) {
+  $size: calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - #{$wmin}px) / (#{$wmax} - #{$wmin})));
+  @return $size;
+}
+
+// Міксін для адаптивних зображень. Визивається: "@include adaptive-image()". 
+// Потрібно для обгортки, в якій знаходиться зображення. В дужках пишемо розміри зображення, тобто ширину та висоту.
+
+@mixin adaptive-image($width, $height) {
+  position: relative;
+  width: 100%;
+  padding-bottom: calc(($height / $width) * 100%);
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Міксін для адаптиву. Визивається: "@inclide r()". 
+// В дужки ми пишемо нашу максимальну ширину. Можна винести значення в змінні, і тоді викликати змінну. 
+// Назву міксіна можна змінити на будь-яку. "r" = responsive.
+// Міксін викликаємо після всіх стилів елемента. Тобто header, в нього якісь стилі і після них вже міксін.
+
+@mixin r($width) {
+  @media (max-width: #{$width}px) {
+    @content;
+  }
+}
+
+// Використання міксіну
+// .class {
+//   font-size: 30px;
+
+//   @include r(768) {
+//     font-size: 20px;
+//   }
+// }

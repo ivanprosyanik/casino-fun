@@ -1,0 +1,38 @@
+.game__list {
+  display: flex;
+  align-items: center;
+}
+.title  {
+  text-align: left;
+}
+.game__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 250px;
+  &-image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+  }
+
+  &-name {
+    text-decoration: none;
+    color: #000;
+    margin-bottom: 15px;
+  }
+
+  &-link {
+    outline: 1px solid #000;
+    max-width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 25px;
+    border-radius: 30px;
+  }
+}

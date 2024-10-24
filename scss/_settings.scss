@@ -1,0 +1,54 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.icon {
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    min-width: 24px;
+    height: 24px;
+    background-color: #000;
+    mask-image: url(../images/sprite.svg#icon-check);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    transition: background-color .3s;
+  }
+}
+
+body {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.container {
+  max-width: 1480px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.title {
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}

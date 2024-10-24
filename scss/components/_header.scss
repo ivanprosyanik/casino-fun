@@ -1,0 +1,22 @@
+.header {
+  background-color: #a61fff;
+  padding: 10px;
+  font-family: 'Silkscreen';
+  color: #fff;
+  margin-bottom: 30px;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text {
+    font-size: 60px;
+    font-weight: 400;
+  }
+
+  &__money {
+    font-size: 40px;
+  }
+}
