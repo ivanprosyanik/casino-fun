@@ -4,6 +4,10 @@
 }
 .title  {
   text-align: left;
+
+  @include r($phone) {
+    text-align: center;
+  }
 }
 .game__item {
   display: flex;

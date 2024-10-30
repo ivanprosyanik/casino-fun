@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
   <link rel="stylesheet" href="css/style.min.css">
   <title>Document</title>
 </head>
@@ -26,45 +31,76 @@
         <div class="container">
           <h1 class="title">FruitKing</h1>
           <div class="game__inner">
-            <ul class="signs__list">
-              <li class="signs__item">
-                🍒 - x1
-              </li>
-              <li class="signs__item">
-                🍓 - x0.5
-              </li>
-              <li class="signs__item">
-                🍌 - x1.5
-              </li>
-              <li class="signs__item">
-                🍉 - x2
-              </li>
-              <li class="signs__item">
-                🍋 - x2.5
-              </li>
-              <li class="signs__item">
-                💎 - x3
-              </li>
-              <li class="signs__item">
-                👑 - x5
-              </li>
-              <li class="signs__item">
-                ✅ - FreeSpins
-              </li>
-            </ul>
+            <div class="game__price">
+              <button class="game__price-show" id="gamePriceShow" type="button">?</button>
+              <ul class="signs__list">
+                <li class="signs__item">
+                  🍒 - x1
+                </li>
+                <li class="signs__item">
+                  🍓 - x0.5
+                </li>
+                <li class="signs__item">
+                  🍌 - x1.5
+                </li>
+                <li class="signs__item">
+                  🍉 - x2
+                </li>
+                <li class="signs__item">
+                  🍋 - x2.5
+                </li>
+                <li class="signs__item">
+                  💎 - x3
+                </li>
+                <li class="signs__item">
+                  👑 - x5
+                </li>
+                <li class="signs__item">
+                  ✅ - FreeSpins
+                </li>
+              </ul>
+            </div>
+            <div class="lost-free-spin">
+              Осталось freeSpin:
+              <span id="lostFreeSpin"></span>
+            </div>
             <div class="numbers" id="numbers">
             </div>
           </div>
           <button class="start" id="btnStart">Spin</button>
           <div class="money" id="money"></div>
           <input type="number" class="set-bet" id="setBet" required placeholder="Your bet">
+
+          <div class="modal modal-welcome" id="modalWelcome">
+            <div class="modal__inner">
+              <h3 class="modal__title">Welcome to <span>FruitKing</span></h3>
+            </div>
+            <button class="modal__close modal-welcome__close" type="button">Continue</button>
+          </div>
+          <div class="modal modal-free" id="modalFree">
+            <div class="modal__inner">
+              <h3 class="modal__title">
+                You WIN <span id="countFree"></span> FREE SPINS!!!!
+              </h3>
+            </div>
+            <button class="modal__close modal-free__close" type="button">Continue</button>
+          </div>
+          <div class="modal modal-win" id="modalWin">
+            <div class="modal__inner">
+              <h3 class="modal__title">
+                You win in freeSpin:
+                <span id="winInFree"></span>
+              </h3>
+            </div>
+            <button class="modal__close modal-win__close" type="button">Continue</button>
+          </div>
         </div>
       </section>
     </main>
   </div>
 
 
-  <script src="js/main.js"></script>
+  <script src="js/fruitKing.js"></script>
 </body>
 
 </html>

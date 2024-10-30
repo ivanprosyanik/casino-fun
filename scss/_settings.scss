@@ -33,7 +33,13 @@
 body {
   font-family: 'Montserrat';
   font-weight: 400;
-  font-size: 20px;
+  font-size: size(20, 18);
+  overflow-x: hidden;
+  transition: background-color .5s ease-in-out;
+}
+
+.wrapper {
+  padding-bottom: 10px;
 }
 
 .container {
@@ -44,11 +50,28 @@ body {
 
 .logo {
   max-width: 200px;
+  @include r($phone) {
+    max-width: 150px;
+  }
 }
 
 .title {
   text-align: center;
-  font-size: 60px;
-  margin-bottom: 30px;
+  font-size: size(60, 45);
+  margin-bottom: size(30, 10);
   font-weight: 500;
+}
+
+.lock {
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color .5s ease-in-out;
+  }
 }

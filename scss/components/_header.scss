@@ -5,6 +5,10 @@
   color: #fff;
   margin-bottom: 30px;
 
+  @include r($phone) {
+    padding: 5px 0
+  }
+
   &__nav {
     display: flex;
     justify-content: space-between;
@@ -17,6 +21,6 @@
   }
 
   &__money {
-    font-size: 40px;
+    font-size: size(40, 20);
   }
 }
