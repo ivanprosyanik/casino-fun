@@ -1,0 +1,162 @@
+.blackjack {
+  font-size: 30px;
+  font-weight: 700;
+
+  @include r($desktop) {
+    font-size: size(30, 18);
+  }
+
+  &__container {
+    max-width: 945px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  padding: size(29, 15) size(44, 20);
+  border: 1px solid #000;
+  white-space: nowrap;
+
+  &:disabled {
+    cursor: default;
+    background-color: #dcdcdc;
+    color: #626262;
+  }
+
+  &-restart {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-150%);
+    position: absolute;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out, transform .5s ease-in-out, position .3s ease-in-out;
+  }
+
+  &-restart.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out, transform .5s ease-in-out, position .3s ease-in-out;
+  }
+}
+
+.blackjack__title {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  font-weight: 500;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.ballance {
+  margin-bottom: 35px;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__text,
+  &__number {
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__number {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 10px;
+    border: 1px solid #000;
+
+    &--currency {
+      &::after {
+        content: '€';
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.result {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include r($phone) {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  &__player,
+  &__pc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: size(30, 18);
+    margin-bottom: 20px;
+  }
+
+  &__span {
+    width: size(240, 140);
+    height: size(200, 100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    color: #000;
+    font-size: size(70, 35);
+  }
+
+  &__game {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(50%);
+    transition: position .3s ease-in-out, opacity .3s ease-in-out, visibility .3s ease-in-out, transform .3s ease-in-out;
+
+    &.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: position .3s ease-in-out, opacity .3s ease-in-out, visibility .3s ease-in-out, transform .3s ease-in-out;
+    }
+  }
+}
+
+.btns {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__item {
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      @include r($phone) {
+        margin: 0 auto;
+      }
+    }
+  }
+}

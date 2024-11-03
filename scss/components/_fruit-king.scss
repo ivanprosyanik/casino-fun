@@ -1,0 +1,86 @@
+.numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 300px;
+  margin: 0 auto;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #5f3c1e;
+}
+
+.fruit-king__title {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  font-weight: 500;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+
+.matrix-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 60px;
+  height: 50px;
+  font-size: 40px;
+  transform: translateY(-500%);
+  transition: opacity 0.5s ease-in-out;
+
+  &--0_0,
+  &--1_0,
+  &--2_0 {
+    animation: animShow 0.5s ease-in-out forwards;
+  }
+
+  &--0_1,
+  &--1_1,
+  &--2_1 {
+    animation: animShow 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  &--0_2,
+  &--1_2,
+  &--2_2 {
+    animation: animShow 0.5s ease-in-out forwards;
+    animation-delay: 1s;
+  }
+}
+
+.winner {
+  outline: 2px solid transparent;
+  background-color: yellow;
+  animation: pulse 1s infinite alternate;
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    outline-color: transparent;
+  }
+
+  100% {
+    transform: scale(1.1);
+    outline-color: gold;
+  }
+}
+
+@keyframes animShow {
+  from {
+    transform: translateY(-500%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

@@ -152,14 +152,15 @@ async function freeSpins(count) {
     lostFreeSpin.textContent = counts;
     buildMatrix(bet);
     updateLines();
+    console.log(signs);
   }
-  signs.unshift('✅');
   setTimeout(() => {
     modalWin.classList.add('active');
     body.classList.add('lock')
     currentMoney = money - currentMoney;
     winInFree.textContent = currentMoney;
   }, 2500);
+  signs.unshift('✅');
 }
 
 function winnerLine(line) {

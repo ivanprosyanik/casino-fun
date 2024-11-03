@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon/favicon-lotozabava/" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon-lotozabava/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon-lotozabava/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-lotozabava/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/favicon-lotozabava/site.webmanifest" />
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>LotoZabava</title>
+</head>
+
+<body class="body" id="body">
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <nav class="header__nav">
+          <a href="index.html" class="logo">
+            <img src="images/logo.svg" alt="Logo" class="logo__img">
+          </a>
+          <div class="header__money icon icon--chip">5000</div>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <section class="loto">
+        <div class="container">
+          <div class="loto__inner">
+            <ul class="loto__coef-list">
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet">-</div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet">-</div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet">-</div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item--bet-4" id="coef-4"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--5" id="coef-5"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--6" id="coef-6"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--7" id="coef-7"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--8" id="coef-8"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--9" id="coef-9"></div>
+              </li>
+              <li class="loto__coef-item">
+                <div class="loto__coef-item-bet loto__coef-item-bet--10" id="coef-10"></div>
+              </li>
+            </ul>
+            <div class="loto__field">
+              <ul class="loto__list first--field"></ul>
+              <div class="loto__rules">
+                Mark 4 to 10 numbers and tap <span>Play</span>
+              </div>
+              <ul class="loto__list second--field"></ul>
+            </div>
+          </div>
+          <div class="loto__actions">
+            <div class="loto__bet">
+              <input type="number" class="bet" id="setBet" required placeholder="Your bet">
+            </div>
+            <div class="loto__last-win">
+              <p>Your last win:</p>
+              <span id="lastWin"></span>
+            </div>
+            <ul class="loto__btns-list">
+              <li class="loto__btns-item">
+                <button class="loto__btns-btn" type="button" id="btnRandom">Random numbers</button>
+              </li>
+              <li class="loto__btns-item">
+                <button class="loto__btns-btn" type="button" id="btnClear">Clear</button>
+              </li>
+              <li class="loto__btns-item">
+                <button class="loto__btns-btn" id="btnStart" type="button">Start</button>
+              </li>
+              <li class="loto__btns-item">
+                <button class="loto__btns-btn" type="button"></button>
+              </li>
+            </ul>
+            <div class="money__output">
+              <span id="moneyOutput"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <script src="js/lotoZabava.js"></script>
+</body>
+
+</html>

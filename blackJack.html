@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-blackJack">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-blackJack/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-blackJack/favicon-16x16.png">
+  <link rel="manifest" href="favicon/favicon-blackJack/site.webmanifest">
+  <link rel="mask-icon" href="favicon/favicon-blackJack/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>BlackJack</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <nav class="header__nav">
+          <a href="index.html" class="logo">
+            <img src="images/logo.svg" alt="Logo" class="logo__img">
+          </a>
+          <div class="header__money icon icon--chip">5000</div>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <section class="blackjack">
+        <div class="blackjack__container container">
+          <h1 class="title blackjack__title">Welcome to <span>BlackJack</span></h1>
+          <div class="ballance">
+            <ul class="ballance__list">
+              <li class="ballance__item">
+                <p class="ballance__text">Your bet:</p>
+                <input class="ballance__input ballance__number" id="input-bet" type="number" min="0" required>
+              </li>
+              <li class="ballance__item">
+                <p class="ballance__text">Your balance:</p>
+                <span class="ballance__cash ballance__number ballance__number--currency" id="your-cash">100</span>
+              </li>
+            </ul>
+          </div>
+          <div class="result">
+            <div class="result__player">
+              <h2 class="result__title">Your number:</h2>
+              <span class="result__span" id="result-player"></span>
+            </div>
+            <div class="result__game" id="result-game">
+              <h2 class="result__title">Результат игры:</h2>
+              <span class="result__span" id="result-game"></span>
+            </div>
+            <div class="result__pc">
+              <h2 class="result__title">Enemy number:</h2>
+              <span class="result__span" id="result-pc"></span>
+            </div>
+          </div>
+          <div class="btns">
+            <ul class="btns__list">
+              <li class="btns__item">
+                <button class="btn btn-get" id="get-card" type="button">Hit</button>
+              </li>
+              <li class="btns__item">
+                <button class="btn btn-stop" id="stop" type="button">Stand</button>
+              </li>
+              <li class="btns__item">
+                <button class="btn btn-new-game" id="new-game" type="button">New game</button>
+              </li>
+              <button class="btn btn-restart" id="restart">Начни заново</button>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="js/blackJack.js"></script>
+</body>
+
+</html>

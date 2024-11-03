@@ -1,0 +1,108 @@
+.loto {
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 650px;
+    margin-bottom: 50px;
+  }
+
+  &__coef-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__coef-item {
+    list-style: number;
+    padding-left: 50px;
+    transition: outline-color .3s ease-in-out;
+    &.active {
+      outline: 1px solid transparent;
+      animation: anim 1s infinite alternate ease-in-out;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 400px;
+    margin: 0 auto;
+    outline: 3px solid $c-gold;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__rules {
+    text-align: center;
+    margin-bottom: 5px;
+
+    span {
+      text-transform: uppercase;
+      color: green;
+    }
+  }
+
+  &__item {
+    outline: 1px solid $c-gold;
+
+    &-btn {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-color: #0324ca;
+      color: #fff;
+      font-weight: 700;
+      transition: background-color .3s ease-in-out;
+    }
+
+    &-btn.active {
+      background-color: #001167;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 50px;
+    margin: 0 auto;
+  }
+
+  &__btns-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 30px;
+  }
+
+  &__bet {
+    .bet {
+      text-align: center;
+      outline: 1px solid $c-gold;
+      padding: 5px;
+      max-width: 200px;
+      font-weight: 500;
+
+      &::placeholder {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@keyframes anim {
+  from {
+    outline-color: transparent;
+  }
+  to {
+    outline-color: $c-gold;
+  }
+}
