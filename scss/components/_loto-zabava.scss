@@ -1,23 +1,43 @@
 .loto {
+  position: relative;
 
   &__inner {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     max-width: 650px;
-    margin-bottom: 50px;
+    margin-bottom: size(50, 20);
+
+    @include r($tablet) {
+      justify-content: center;
+      gap: size(100, 50);
+    }
+
+    @include r($phone) {
+      display: block;
+    }
   }
 
   &__coef-list {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include r($phone) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 320px;
+      margin: 0 auto;
+      gap: 0 20px;
+      margin-bottom: 20px;
+    }
   }
 
   &__coef-item {
     list-style: number;
-    padding-left: 50px;
+    padding-left: size(50, 30);
     transition: outline-color .3s ease-in-out;
+
     &.active {
       outline: 1px solid transparent;
       animation: anim 1s infinite alternate ease-in-out;
@@ -31,6 +51,11 @@
     max-width: 400px;
     margin: 0 auto;
     outline: 3px solid $c-gold;
+
+    @include r($tablet) {
+      justify-content: space-between;
+      max-width: size(400, 320);
+    }
 
     &:not(:last-child) {
       margin-bottom: 5px;
@@ -72,8 +97,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0 50px;
+    gap: 0 size(50, 10);
     margin: 0 auto;
+
+    @include r($tablet) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin: 0 auto;
+      width: 100%;
+      max-width: 410px;
+    }
   }
 
   &__btns-list {
@@ -98,10 +131,47 @@
   }
 }
 
+.modal__rotate {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  width: 90%;
+  color: #fff;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  background-color: #a8a8a8;
+
+  h2 {
+    font-size: size(24, 20);
+    margin-bottom: 10px;
+  }
+
+  img {
+    margin: 0 auto;
+  }
+
+  &.active {
+    display: block;
+    z-index: 22;
+  }
+}
+
+.lock {
+  position: initial;
+
+  &::after {
+    content: '';
+    background-color: rgba(#000, .98);
+  }
+}
+
 @keyframes anim {
   from {
     outline-color: transparent;
   }
+
   to {
     outline-color: $c-gold;
   }

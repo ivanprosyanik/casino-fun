@@ -14,22 +14,24 @@
 .game {
   &__list {
     display: flex;
+    padding: 0 5px 10px;
     gap: 0 20px;
+    overflow-x: auto;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
     position: relative;
-    max-width: 250px;
+    max-width: size(250, 150);
 
     &-image {
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
       background-color: #f7f7f7;
-      width: 250px;
-      height: 250px;
+      width: size(250, 150);
+      height: size(250, 150);
       border-radius: 30px;
       margin-bottom: 15px;
     }
@@ -48,6 +50,14 @@
       align-items: center;
       padding: 5px 25px;
       border-radius: 30px;
+    }
+  }
+
+  &-link {
+    &:hover {
+      .game__item-image {
+        transform: scale(1.01);
+      }
     }
   }
 }

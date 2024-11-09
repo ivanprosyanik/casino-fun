@@ -154,7 +154,7 @@ function play() {
 };
 
 btnStart.addEventListener('click', () => {
-  if(bet > money) {
+  if (bet > money) {
     alert('Enough money')
   } else if (userNumber.length < 4) {
     alert('Mark 4 to 10 numbers and tap PLAY')
@@ -194,4 +194,17 @@ btnClear.addEventListener('click', () => {
   btns.forEach(e => {
     e.classList.remove('active');
   });
+});
+
+const modalRotate = document.querySelector('.modal__rotate');
+const body = document.querySelector('.body');
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth < 576) {
+    modalRotate.classList.add('active');
+    body.classList.add('lock');
+  } else {
+    modalRotate.classList.remove('active');
+    body.classList.remove('lock');
+  }
 });
