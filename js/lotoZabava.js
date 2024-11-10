@@ -134,16 +134,41 @@ function setCoef(bet) {
   coef10.textContent = bet * 1000;
 }
 
+let numbersList = document.querySelector('.loto__numbers-list');
+
+const array = Array.from(Array(16), (_, index) => (index < 10 ? index.toString() : String.fromCharCode(97 + index - 10)));
+
+function generateColor(numbersItems) {
+  numbersItems.forEach(e => {
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      let a = Math.floor(Math.random() * array.length);
+      color += array[a];
+    };
+    e.style.outlineColor = color;
+  });
+};
+
+let numbersListItem = '';
 function play() {
   if (bet) {
     money = money - bet;
     randomNumber();
+    console.log(...randomNumbers);
+    numbersListItem = '';
+    for (let i = 0; i < randomNumbers.length; i++) {
+      numbersListItem += `<li class="loto__numbers-item">${randomNumbers[i]}</li>`
+    }
+    numbersList.innerHTML = numbersListItem;
+    const numbersItems = document.querySelectorAll('.loto__numbers-item');
+    generateColor(numbersItems);
     match = 0;
     moneyOutput.textContent = money;
     for (let i = 0; i < randomNumbers.length; i++) {
       for (let j = 0; j < userNumber.length; j++) {
         if (randomNumbers[i] == userNumber[j]) {
           match += 1;
+          numbersItems[i].classList.add('winner')
         }
       }
     }

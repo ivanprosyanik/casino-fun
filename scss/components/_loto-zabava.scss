@@ -129,6 +129,24 @@
       }
     }
   }
+
+  &__numbers-list {
+    width: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  &__numbers-item {
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    border-radius: 50%;
+    outline: 5px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .modal__rotate {
