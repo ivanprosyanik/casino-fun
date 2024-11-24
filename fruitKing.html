@@ -22,7 +22,7 @@
           <a href="index.html" class="logo">
             <img src="images/logo.svg" alt="Logo" class="logo__img">
           </a>
-          <div class="header__money icon icon--chip">5000</div>
+          <div class="header__money icon icon--chip"></div>
         </nav>
       </div>
     </header>
@@ -66,41 +66,34 @@
             </div>
             <div class="numbers" id="numbers">
             </div>
+            <div class="game__money"></div>
           </div>
-          <button class="start" id="btnStart">Spin</button>
-          <div class="money" id="money"></div>
-          <input type="number" class="set-bet" id="setBet" required placeholder="Your bet">
-
-          <div class="modal modal-welcome" id="modalWelcome">
-            <div class="modal__inner">
-              <h3 class="modal__title">Welcome to <span>FruitKing</span></h3>
-            </div>
-            <button class="modal__close modal-welcome__close" type="button">Continue</button>
-          </div>
-          <div class="modal modal-free" id="modalFree">
-            <div class="modal__inner">
-              <h3 class="modal__title">
-                You WIN <span id="countFree"></span> FREE SPINS!!!!
-              </h3>
-            </div>
-            <button class="modal__close modal-free__close" type="button">Continue</button>
-          </div>
-          <div class="modal modal-win" id="modalWin">
-            <div class="modal__inner">
-              <h3 class="modal__title">
-                You win in freeSpin:
-                <span id="winInFree"></span>
-              </h3>
-            </div>
-            <button class="modal__close modal-win__close" type="button">Continue</button>
-          </div>
+          <button class="game__start" id="btnStart">Spin</button>
+          <input type="number" class="game__set-bet" id="setBet" required placeholder="Your bet">
         </div>
       </section>
     </main>
+    <div class="modal modal-free" id="modalFree">
+      <div class="modal__inner">
+        <h3 class="modal__title">
+          You WIN <span id="countFree"></span> FREE SPINS!!!!
+        </h3>
+      </div>
+      <button class="modal__close modal-free__close" type="button">Continue</button>
+    </div>
+    <div class="modal modal-win" id="modalWin">
+      <div class="modal__inner">
+        <h3 class="modal__title">
+          You win in freeSpin:
+          <span id="winInFree"></span>
+        </h3>
+      </div>
+      <button class="modal__close modal-win__close" type="button">Continue</button>
+    </div>
   </div>
 
 
-  <script src="js/fruitKing.js"></script>
+  <script type="module" src="js/fruitKing.js"></script>
 </body>
 
 </html>

@@ -22,11 +22,17 @@
     min-width: 24px;
     height: 24px;
     background-color: #000;
-    mask-image: url(../images/sprite.svg#icon-check);
+    // mask-image: url(../images/sprite.svg#icon-check);
     mask-repeat: no-repeat;
     mask-size: contain;
     mask-position: center;
     transition: background-color .3s;
+  }
+
+  &--chip {
+    &::before {
+      mask-image: url(../images/chip.svg);
+    }
   }
 }
 
@@ -44,7 +50,13 @@ a {
 }
 
 .wrapper {
+  padding-top: 115px;
+  position: relative;
   padding-bottom: 10px;
+
+  @include r($phone) {
+    padding-top: 65px;
+  }
 }
 
 .container {
@@ -55,6 +67,7 @@ a {
 
 .logo {
   max-width: 200px;
+
   @include r($phone) {
     max-width: 150px;
   }

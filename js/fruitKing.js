@@ -1,7 +1,6 @@
 'use strict'
 
 const body = document.querySelector('.body');
-const modalWelcome = document.getElementById('modalWelcome');
 const modalFree = document.getElementById('modalFree');
 const modalWin = document.getElementById('modalWin');
 const countFree = document.getElementById('countFree');
@@ -10,21 +9,22 @@ const winInFree = document.getElementById('winInFree');
 const gamePriceShow = document.getElementById('gamePriceShow');
 const gamePrice = document.querySelector('.signs__list');
 const lostFreeSpinDiv = document.querySelector('.lost-free-spin');
-
-const soundEffect = new Audio('../fruitKingSlot.mp3');
-
-const modalWelcomeClose = document.querySelector('.modal-welcome__close');
-const modalClose = document.querySelectorAll('.modal__close')
 const modalFreeClose = document.querySelector('.modal-free__close');
 const modalWinClose = document.querySelector('.modal-win__close');
 const matrixContainer = document.getElementById('numbers');
 let divMatrixHTML = '';
 const btnStart = document.getElementById('btnStart');
 btnStart.disabled = false;
-const moneyOutput = document.getElementById('money');
+const gameMoney = document.querySelector('.game__money');
 const setBet = document.getElementById('setBet');
 let signs = ['✅', '💎', '🍒', '🍋', '🍌', '🍓', '🍉', '👑'];
-let money = 5000;
+const moneyOutput = document.querySelector('.header__money');
+
+import { localStorageMoney, stickyHeader } from "./index.js";
+localStorageMoney(moneyOutput);
+stickyHeader();
+let money = parseInt(localStorage.getItem('money'));
+
 let bet;
 let betElem = document.createElement('div');
 
@@ -41,6 +41,7 @@ setBet.addEventListener('input', () => {
 
 });
 moneyOutput.textContent = money;
+gameMoney.textContent = money;
 
 let slots =
   [
@@ -52,14 +53,16 @@ let slots =
 function minusBet(bet) {
   money = money - bet;
   moneyOutput.textContent = money;
-  betElem.classList.add('money__minus-bet'); // Добавляем базовый класс
+  gameMoney.textContent = money;
+  localStorage.setItem('money', money);
+  betElem.classList.add('game__money-minus-bet'); // Добавляем базовый класс
 
   // Добавляем активный класс для анимации появления
-  betElem.classList.add('money__minus-bet--active');
+  betElem.classList.add('game__money-minus-bet--active');
 
   // Убираем класс через 1 секунду, чтобы элемент плавно исчез
   setTimeout(() => {
-    betElem.classList.remove('money__minus-bet--active'); // Убираем класс, чтобы плавно исчезнуть
+    betElem.classList.remove('game__money-minus-bet--active'); // Убираем класс, чтобы плавно исчезнуть
 
     // Можно удалить элемент после того, как transition завершится
     setTimeout(() => {
@@ -69,13 +72,15 @@ function minusBet(bet) {
   // setTimeout(() => {
   //   betElem.classList.remove('money__minus-bet--active');
   // }, 1000);
-  moneyOutput.appendChild(betElem);
+  gameMoney.appendChild(betElem);
   betElem.textContent = `-${bet}`;
 }
 
 function plusBet(bet) {
   money = money + bet;
+  localStorage.setItem('money', money);
   moneyOutput.textContent = money;
+  gameMoney.textContent = money;
 }
 
 async function buildMatrix() {
@@ -94,15 +99,6 @@ async function buildMatrix() {
 
 buildMatrix();
 
-if (buildMatrix) {
-  body.classList.add('lock');
-  modalWelcome.classList.add('active');
-}
-
-modalWelcomeClose.addEventListener('click', () => {
-  body.classList.remove('lock');
-  modalWelcome.classList.remove('active');
-});
 
 modalWinClose.addEventListener('click', () => {
   body.classList.remove('lock');
@@ -168,7 +164,6 @@ function winnerLine(line) {
 }
 
 function checkCoeff(line) {
-  // ['💎', '✅', '🍒', '🍋', '🍌', '🍓', '🍉', '👑'];
   let currentMoney = money;
   switch (line[0]) {
     case '🍒':
@@ -218,24 +213,21 @@ function checkCoeff(line) {
   }
   setTimeout(() => {
     currentMoney = money - currentMoney;
-    betElem.classList.add('money__plus-bet'); // Добавляем базовый класс
+    betElem.classList.add('game__money-plus-bet'); // Добавляем базовый класс
 
     // Добавляем активный класс для анимации появления
-    betElem.classList.add('money__plus-bet--active');
+    betElem.classList.add('game__money-plus-bet--active');
 
     // Убираем класс через 1 секунду, чтобы элемент плавно исчез
     setTimeout(() => {
-      betElem.classList.remove('money__plus-bet--active'); // Убираем класс, чтобы плавно исчезнуть
+      betElem.classList.remove('game__money-plus-bet--active'); // Убираем класс, чтобы плавно исчезнуть
 
       // Можно удалить элемент после того, как transition завершится
       setTimeout(() => {
         betElem.remove(); // Удаляем элемент после того, как он исчез
       }, 1000);  // Время transition для плавного исчезновения
     }, 1000);  // Время анимации появления // Время анимации появления
-    // setTimeout(() => {
-    //   betElem.classList.remove('money__minus-bet--active');
-    // }, 1000);
-    moneyOutput.appendChild(betElem);
+    gameMoney.appendChild(betElem);
     betElem.textContent = `+${currentMoney}`;
   }, 1000);
 }
@@ -334,6 +326,9 @@ function modalFreeFunc(count) {
 btnStart.addEventListener('click', () => {
   if (bet > money) {
     alert('У вас недостаточно денег!');
+    localStorageMoney(moneyOutput);
+    money = parseInt(localStorage.getItem('money'));
+    gameMoney.textContent = money;
   } else {
     start(bet)
   }

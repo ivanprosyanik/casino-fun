@@ -14,6 +14,10 @@ const resultPlayer = document.getElementById('result-player');
 const resultPc = document.getElementById('result-pc');
 const resultGame = document.getElementById('result-game');
 
+// import localStorageMoney from "./index.js";
+// localStorageMoney(moneyOutput);
+// let money = parseInt(localStorage.getItem('money'));
+
 let playerMoney = 100;
 let bet = 0;
 let playerCard = 0;

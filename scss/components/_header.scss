@@ -1,9 +1,21 @@
 .header {
   background-color: #a61fff;
-  padding: 10px;
+  padding: 20px 0;
   font-family: 'Silkscreen';
   color: #fff;
   margin-bottom: 30px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 99;
+  transition: box-shadow .3s ease-in-out, padding-top .3s ease-in-out, padding-bottom .3s ease-in-out;
+
+  &.sticky {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 0 10px 0 $c-gold;
+  }
 
   @include r($phone) {
     padding: 5px 0
@@ -22,5 +34,13 @@
 
   &__money {
     font-size: size(40, 20);
+    gap: 0 10px;
+
+    &::before {
+      padding-top: 5px;
+      width: 30px;
+      height: 30px;
+      background-color: $c-gold;
+    }
   }
 }
