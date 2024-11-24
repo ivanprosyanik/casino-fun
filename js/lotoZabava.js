@@ -5,7 +5,8 @@ const secondField = document.querySelector('.second--field');
 const btnStart = document.getElementById('btnStart');
 const btnRandom = document.getElementById('btnRandom');
 const btnClear = document.getElementById('btnClear');
-const moneyOutput = document.getElementById('moneyOutput');
+const gameMoney = document.getElementById('moneyOutput');
+const moneyOutput = document.querySelector('.header__money');
 const setBet = document.getElementById('setBet');
 let lastWin = document.getElementById('lastWin');
 let btnOnField = '';
@@ -19,13 +20,19 @@ let coef9 = document.getElementById('coef-9');
 let coef10 = document.getElementById('coef-10');
 
 
-let money = 5000;
 let bet;
+let money;
+
+import { localStorageMoney, stickyHeader } from "./index.js";
+stickyHeader();
+localStorageMoney(moneyOutput);
+money = parseInt(localStorage.getItem('money'));
+
 setBet.addEventListener('input', () => {
   bet = Number(setBet.value);
   setCoef(bet);
 });
-moneyOutput.textContent = money;
+gameMoney.textContent = money;
 
 function generateButton() {
   for (let i = 1; i <= 40; i++) {
@@ -43,7 +50,6 @@ function generateButton() {
       </li>`
   }
   secondField.insertAdjacentHTML('afterbegin', btnOnField);
-  // field.innerHTML = btnOnField;
 };
 generateButton();
 
@@ -79,43 +85,57 @@ function calcCoef(bet, match) {
   switch (match) {
     case 4:
       money = money + bet * 2;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 2;
       coef4.parentElement.classList.add('active');
       break;
     case 5:
       money = money + bet * 5;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 5;
       coef5.parentElement.classList.add('active');
       break;
     case 6:
       money = money + bet * 16;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 16;
       coef6.parentElement.classList.add('active');
       break;
     case 7:
       money = money + bet * 80;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 80;
       coef7.parentElement.classList.add('active');
       break;
     case 8:
       money = money + bet * 240;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 240;
       coef8.parentElement.classList.add('active');
       break;
     case 9:
       money = money + bet * 700;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 700;
       coef9.parentElement.classList.add('active');
       break;
     case 10:
       money = money + bet * 1000;
+      localStorage.setItem('money', money);
       moneyOutput.textContent = money;
+      gameMoney.textContent = money;
       lastWin.textContent = bet * 1000;
       coef10.parentElement.classList.add('active');
       break;
@@ -153,6 +173,8 @@ let numbersListItem = '';
 function play() {
   if (bet) {
     money = money - bet;
+    localStorage.setItem('money', money);
+    moneyOutput.textContent = money;
     randomNumber();
     console.log(...randomNumbers);
     numbersListItem = '';
@@ -163,7 +185,7 @@ function play() {
     const numbersItems = document.querySelectorAll('.loto__numbers-item');
     generateColor(numbersItems);
     match = 0;
-    moneyOutput.textContent = money;
+    gameMoney.textContent = money;
     for (let i = 0; i < randomNumbers.length; i++) {
       for (let j = 0; j < userNumber.length; j++) {
         if (randomNumbers[i] == userNumber[j]) {

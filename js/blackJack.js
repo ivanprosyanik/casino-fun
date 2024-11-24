@@ -4,8 +4,7 @@ const btnGetCard = document.getElementById('get-card');
 const btnStop = document.getElementById('stop');
 const btnNewGame = document.getElementById('new-game');
 const restartGame = document.getElementById('restart');
-const soundWin = document.getElementById('sound-win');
-const soundLose = document.getElementById('sound-lose');
+const moneyOutput = document.querySelector('.header__money');
 
 const betInput = document.getElementById('input-bet');
 const cash = document.getElementById('your-cash');
@@ -14,18 +13,22 @@ const resultPlayer = document.getElementById('result-player');
 const resultPc = document.getElementById('result-pc');
 const resultGame = document.getElementById('result-game');
 
-// import localStorageMoney from "./index.js";
-// localStorageMoney(moneyOutput);
-// let money = parseInt(localStorage.getItem('money'));
+import { localStorageMoney, stickyHeader } from "./index.js";
+stickyHeader();
+localStorageMoney(moneyOutput);
 
-let playerMoney = 100;
+
+let money = parseInt(localStorage.getItem('money'));
+cash.textContent = money;
+
+// let money = 100;
 let bet = 0;
 let playerCard = 0;
 let computerNumber = 0;
 
 
 betInput.min = 1;
-betInput.max = playerMoney;
+betInput.max = money;
 
 // console.log(typeof betInput.value);
 
@@ -37,8 +40,10 @@ function getCard() {
 function player() {
   if (bet === 0) {
     bet += 1
-    playerMoney -= betInput.value;
-    cash.textContent = playerMoney;
+    money -= betInput.value;
+    localStorage.setItem('money', money);
+    moneyOutput.textContent = money;
+    cash.textContent = money;
   }
   playerCard += getCard()
   // console.log(`Your card: ${playerCard}`);
@@ -54,7 +59,7 @@ function playLose(number) {
     btnGetCard.disabled = true;
     btnStop.disabled = true;
 
-    if (playerMoney == 0) {
+    if (money == 0) {
       restartGame.classList.add('active');
       restartGame.scrollIntoView({ behavior: 'smooth' });
       btnNewGame.disabled = true;
@@ -65,7 +70,6 @@ function playLose(number) {
 function computer() {
   while (computerNumber <= 17) {
     computerNumber += getCard();
-    // console.log(`Computer choise: ${computerNumber}`);
     resultPc.textContent = `${computerNumber}`;
   }
   checkCards()
@@ -76,7 +80,7 @@ function checkCards() {
     // console.log('You lose');
     resultGame.classList.add('active')
     resultGame.textContent = 'You lose';
-    if (playerMoney <= 0) {
+    if (money <= 0) {
       restartGame.classList.add('active');
       btnNewGame.disabled = true;
     };
@@ -84,29 +88,33 @@ function checkCards() {
     console.log('This is draw!');
     resultGame.classList.add('active');
     resultGame.textContent = 'Draw';
-    playerMoney += parseInt(betInput.value);
-    cash.textContent = playerMoney;
+    money += parseInt(betInput.value);
+    localStorage.setItem('money', money);
+    moneyOutput.textContent = money;
+    cash.textContent = money;
   } else if (playerCard > computerNumber && playerCard <= 21 || computerNumber > 21) {
     console.log('You win');
     resultGame.classList.add('active')
     resultGame.textContent = 'You Win';
     let winMoney = betInput.value * 2;
-    playerMoney += winMoney;
-    cash.textContent = playerMoney;
+    money += winMoney; 
+    localStorage.setItem('money', money);
+    moneyOutput.textContent = money;
+    cash.textContent = money;
   }
   btnGetCard.disabled = true;
   btnStop.disabled = true;
 }
 
 function newGame() {
-  if (playerMoney != 0) {
+  if (money != 0) {
     playerCard = 0;
     computerNumber = 0;
     btnGetCard.disabled = false;
     btnStop.disabled = false;
     console.clear();
     bet = 0;
-    cash.textContent = playerMoney;
+    cash.textContent = money;
 
     resultGame.classList.remove('active');
     resultPlayer.textContent = '';
@@ -120,7 +128,7 @@ btnGetCard.addEventListener('click', () => {
   if (betInput.value < 0 && bet == 0) {
     alert('Please enter a valid number!');
     betInput.value = 1;
-  } else if (betInput.value > playerMoney && bet == 0) {
+  } else if (betInput.value > money && bet == 0) {
     alert(`You don't have enough money!`)
   } else {
     player();
@@ -129,9 +137,9 @@ btnGetCard.addEventListener('click', () => {
 
 btnStop.addEventListener('click', () => {
   if (playerCard === 0) {
-    if (betInput.value <= playerMoney) {
-      playerMoney -= betInput.value;
-      cash.textContent = playerMoney;
+    if (betInput.value <= money) {
+      money -= betInput.value;
+      cash.textContent = money;
     } else {
       alert('У вас недостаточно денег! 2')
       newGame()
@@ -142,6 +150,7 @@ btnStop.addEventListener('click', () => {
 });
 
 btnNewGame.addEventListener('click', () => {
+  localStorageMoney(moneyOutput);
   newGame();
 });
 

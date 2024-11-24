@@ -1,6 +1,7 @@
 'use strict';
 
 const moneyOutput = document.querySelector('.header__money');
+
 export function stickyHeader(params) {
   const header = document.querySelector('.header');
   window.onscroll = () => {
@@ -14,7 +15,7 @@ export function stickyHeader(params) {
 
 export function localStorageMoney(moneyOutput) {
   let money;
-  if (!localStorage.getItem('money')) {
+  if (!localStorage.getItem('money') || localStorage.getItem('money') == 0) {
     money = 5000;
     localStorage.setItem('money', money);
     moneyOutput.textContent = money
